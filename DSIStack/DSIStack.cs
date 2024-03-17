@@ -9,16 +9,16 @@ using System.Dynamic;
 namespace DSI
 {
     internal class DSIStackValue<N>
+    {
+        public DSIStackValue(N value, DSIStackValue<N>? next)
         {
-            public DSIStackValue(N value, DSIStackValue<N>? next)
-            {
-                Value = value;
-                Next = next;
-            }
-
-            public N Value;
-            public DSIStackValue<N>? Next;
+            Value = value;
+            Next = next;
         }
+
+        public N Value;
+        public DSIStackValue<N>? Next;
+    }
 
     public class DSIStack<T> : IReadOnlyCollection<T>, ICollection
     {
