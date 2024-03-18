@@ -3,18 +3,6 @@ using System.Collections;
 
 namespace DSI
 {
-    internal class DSIStackValue<N>
-    {
-        public DSIStackValue(N value, DSIStackValue<N>? next)
-        {
-            Value = value;
-            Next = next;
-        }
-
-        public N Value;
-        public DSIStackValue<N>? Next;
-    }
-
     public class DSIStack<T> : IReadOnlyCollection<T>, ICollection
     {
         public void Add(T value)
@@ -189,6 +177,18 @@ namespace DSI
 
         internal DSIStackValue<T>? _top = null;
         private int _count = 0;
+    }
+
+    internal class DSIStackValue<N>
+    {
+        public DSIStackValue(N value, DSIStackValue<N>? next)
+        {
+            Value = value;
+            Next = next;
+        }
+
+        public N Value;
+        public DSIStackValue<N>? Next;
     }
  
     internal class StackEnumerator<T> : IEnumerator<T> 
