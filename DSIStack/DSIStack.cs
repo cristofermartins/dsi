@@ -198,17 +198,14 @@ namespace DSI
  
     internal class StackEnumerator<T> : IEnumerator<T> 
     {
-        private DSIStack<T> _stack;
-        private DSIStackValue<T>? _currentStackValue;
-        private  int _stackInitialCount = 0;
-
         public StackEnumerator(DSIStack<T> stack)
         {
+             _currentStackValue = null;
             _stack = stack;
-            _currentStackValue = null;
             _stackInitialCount = _stack.Count;
         }
 
+        // IEnumerator
         public T Current
         {
             get
@@ -229,7 +226,6 @@ namespace DSI
             }
         }
 
-        // Implement MoveNext and Reset, which are required by IEnumerator.
         public bool MoveNext()
         {
             if (_currentStackValue == null)
@@ -261,30 +257,12 @@ namespace DSI
             }
         }
 
-        // Implement IDisposable, which is also implemented by IEnumerator(T).
-        private bool disposedValue = false;
-        public void Dispose()
-        {
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
-        }
+        // IDisposable
+        public void Dispose() {}
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposedValue)
-            {
-                if (disposing)
-                {
-                    // Dispose of managed resources.
-                }
-            }
-
-            this.disposedValue = true;
-        }
-
-        ~StackEnumerator()
-        {
-            Dispose(disposing: false);
-        }
+        private DSIStack<T> _stack {get; init;}
+        private int _stackInitialCount {get; init;}
+        private DSIStackValue<T>? _currentStackValue {get; set;}
     }
 }
+
