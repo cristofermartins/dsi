@@ -195,7 +195,6 @@ namespace DSI
     {
         public StackEnumerator(DSIStack<T> stack)
         {
-             _currentStackValue = null;
             _stack = stack;
             _stackInitialCount = _stack.Count;
         }
@@ -255,8 +254,8 @@ namespace DSI
         // IDisposable
         public void Dispose() {}
 
-        private DSIStack<T> _stack {get; init;}
-        private int _stackInitialCount {get; init;}
-        private DSIStackValue<T>? _currentStackValue {get; set;}
+        private readonly DSIStack<T> _stack;
+        private readonly int _stackInitialCount;
+        private DSIStackValue<T>? _currentStackValue = null;
     }
 }
