@@ -38,7 +38,7 @@ namespace DSI
             return _top!.Value;           
         }
 
-        public bool Remove()
+        public void Remove()
         {
             if (Empty())
             {
@@ -46,7 +46,6 @@ namespace DSI
             }
             _top = _top!.Next;
             _count--;
-            return true;
         }
 
         public T Pop()
