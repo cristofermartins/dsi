@@ -220,8 +220,8 @@ namespace DSI
         // IDisposable
         public void Dispose() {}
 
-        private DSIStackEx<T> _stack {get; init;}
-        private int _stackInitialCount {get; init;}
+        private readonly DSIStackEx<T> _stack;
+        private readonly int _stackInitialCount;
         private int _currentIndex {get; set;} = -1;
     }
 }
