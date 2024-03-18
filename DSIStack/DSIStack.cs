@@ -179,16 +179,16 @@ namespace DSI
         private int _count = 0;
     }
 
-    internal class DSIStackValue<N>
+    internal class DSIStackValue<T>
     {
-        public DSIStackValue(N value, DSIStackValue<N>? next)
+        public DSIStackValue(T value, DSIStackValue<T>? next)
         {
             Value = value;
             Next = next;
         }
 
-        public N Value;
-        public DSIStackValue<N>? Next;
+        public T Value;
+        public DSIStackValue<T>? Next;
     }
  
     internal class StackEnumerator<T> : IEnumerator<T> 
