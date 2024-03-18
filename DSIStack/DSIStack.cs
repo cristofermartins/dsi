@@ -24,14 +24,14 @@ namespace DSI
     {
         public void Add(T value)
         {
-            _Count++;
-            if (Top == null)
+            _count++;
+            if (_top == null)
             {
-                Top = new DSIStackValue<T>(value, null);
+                _top = new DSIStackValue<T>(value, null);
                 return;
             }
-            DSIStackValue<T> next = new DSIStackValue<T>(value, Top);
-            Top = next;
+            DSIStackValue<T> next = new DSIStackValue<T>(value, _top);
+            _top = next;
         }
 
         public T Peek()
@@ -40,7 +40,7 @@ namespace DSI
             {
                 throw new InvalidOperationException("Stack está vazia.");
             }
-            return Top!.Value;           
+            return _top!.Value;           
         }
 
         public bool Remove()
@@ -49,8 +49,8 @@ namespace DSI
             {
                 throw new InvalidOperationException("Stack está vazia.");
             }
-            Top = Top!.Next;
-            _Count--;
+            _top = _top!.Next;
+            _count--;
             return true;
         }
 
@@ -60,31 +60,31 @@ namespace DSI
             {
                 throw new InvalidOperationException("Stack está vazia.");
             }
-            _Count--;
-            DSIStackValue<T> aux = Top!;
-            Top = aux.Next;
+            _count--;
+            DSIStackValue<T> aux = _top!;
+            _top = aux.Next;
             return aux.Value;
         }
 
         public bool Empty()
         {
-            return (_Count == 0);
+            return (_count == 0);
         }
 
         public void Clear()
         {
-            while (Top != null)
+            while (_top != null)
             {
-                DSIStackValue<T> aux = Top; 
-                Top = Top.Next; 
+                DSIStackValue<T> aux = _top; 
+                _top = _top.Next; 
                 aux.Next = null;
             }
-            _Count = 0;
+            _count = 0;
         }
 
         public bool Contains(T item)
         {
-            DSIStackValue<T>? aux = this.Top;
+            DSIStackValue<T>? aux = this._top;
             while (aux != null)
             {
                 if (aux.Value!.Equals(item))
@@ -103,7 +103,7 @@ namespace DSI
             get 
             {
                 int i = 0;
-                DSIStackValue<T>? aux = this.Top;
+                DSIStackValue<T>? aux = this._top;
                 while (aux != null)
                 {
                     if (i == index)
@@ -118,14 +118,16 @@ namespace DSI
             }
         }
 
+        // IReadOnlyCollection, ICollection
         public int Count
         {
             get 
             {
-                return _Count;
+                return _count;
             }
         }
 
+        // ICollection
         public bool IsSynchronized { get => false; }
 
         public object SyncRoot { get => this; }
@@ -156,7 +158,7 @@ namespace DSI
             T[]? typedArray = array as T[];
             if (typedArray != null)
             {
-                DSIStackValue<T>? aux = this.Top;
+                DSIStackValue<T>? aux = this._top;
                 while (aux != null)
                 {
                     typedArray[index] = aux.Value;
@@ -170,7 +172,7 @@ namespace DSI
             object[]? objectArray = array as object[];
             if (objectArray != null)
             {
-              DSIStackValue<T>? aux = this.Top;
+              DSIStackValue<T>? aux = this._top;
                 while (aux != null)
                 {
                     objectArray[index] = aux.Value!;
@@ -179,9 +181,10 @@ namespace DSI
                 }
             }
 
-            throw new ArgumentException("Target array type is not compatible with the type of items in the collection.");
+            throw new ArgumentException("O Tipo do array não bate com o Tipo de dados da stack.");
         }
 
+        // IEnumerable
         public IEnumerator<T> GetEnumerator()
         {
             return new StackEnumerator<T>(this);
@@ -192,8 +195,8 @@ namespace DSI
             return GetEnumerator();
         }
 
-        internal DSIStackValue<T>? Top = null;
-        private int _Count = 0;
+        internal DSIStackValue<T>? _top = null;
+        private int _count = 0;
     }
  
     internal class StackEnumerator<T> : IEnumerator<T> 
@@ -235,7 +238,7 @@ namespace DSI
                     return false;
                 }
 
-                _currentStackValue = _stack.Top!;
+                _currentStackValue = _stack._top!;
                 return true;
             }
 
@@ -265,4 +268,3 @@ namespace DSI
         private DSIStackValue<T>? _currentStackValue {get; set;}
     }
 }
-
