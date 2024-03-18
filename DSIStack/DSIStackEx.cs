@@ -222,6 +222,6 @@ namespace DSI
 
         private readonly DSIStackEx<T> _stack;
         private readonly int _stackInitialCount;
-        private int _currentIndex {get; set;} = -1;
+        private int _currentIndex = -1;
     }
 }
