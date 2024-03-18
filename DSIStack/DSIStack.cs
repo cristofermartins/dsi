@@ -167,7 +167,7 @@ namespace DSI
         // IEnumerable
         public IEnumerator<T> GetEnumerator()
         {
-            return new StackEnumerator<T>(this);
+            return new DSIStackEnumerator<T>(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -191,9 +191,9 @@ namespace DSI
         public DSIStackValue<T>? Next;
     }
  
-    internal class StackEnumerator<T> : IEnumerator<T> 
+    internal class DSIStackEnumerator<T> : IEnumerator<T> 
     {
-        public StackEnumerator(DSIStack<T> stack)
+        public DSIStackEnumerator(DSIStack<T> stack)
         {
             _stack = stack;
             _stackInitialCount = _stack.Count;
