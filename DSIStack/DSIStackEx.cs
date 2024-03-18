@@ -153,6 +153,7 @@ namespace DSI
                     objectArray[index] = _internalArray[i]!;
                     index++;
                 }
+                return;
             }
 
             throw new ArgumentException("O Tipo do array não bate com o Tipo de dados da stack.");
