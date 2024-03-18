@@ -77,7 +77,8 @@ namespace DSI
             {
                 if (index < _count)
                 {
-                    return _internalArray[index]!;
+                    // acesso em ordem reversa, do topo da pilha até o fundo
+                    return _internalArray[(Count - 1) - index]!;
                 }
   
                 throw new IndexOutOfRangeException(nameof(index));
