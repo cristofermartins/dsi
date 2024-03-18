@@ -141,17 +141,16 @@ namespace DSI
 
             if (array.Rank != 1)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Array é multidimencional.");
             }
 
             if ((index + array.Length) < this.Count)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Não há espaço no array a partir desse index para os items dentro da stack.");
             }
 
             // generics
-            T[]? typedArray = array as T[];
-            if (typedArray != null)
+            if (array is T[] typedArray)
             {
                 DSIStackValue<T>? aux = this._top;
                 while (aux != null)
@@ -164,10 +163,9 @@ namespace DSI
             }
 
             // Object
-            object[]? objectArray = array as object[];
-            if (objectArray != null)
+            if (array is object[] objectArray)
             {
-              DSIStackValue<T>? aux = this._top;
+                DSIStackValue<T>? aux = this._top;
                 while (aux != null)
                 {
                     objectArray[index] = aux.Value!;
