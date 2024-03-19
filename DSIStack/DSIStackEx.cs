@@ -54,6 +54,10 @@ namespace DSI
 
         public void Clear()
         {
+            for (int i = 0; i < _count; i++)
+            {
+                _internalArray[i] = default;
+            }
             _count = 0;
         }
 
