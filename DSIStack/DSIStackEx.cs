@@ -137,7 +137,7 @@ namespace DSI
             // generics
             if (array is T[] typedArray)
             {
-                for (int i = 0; i < _count; i++)
+                for (int i = _count - 1; i >= 0; i--)
                 {
                     typedArray[index] = _internalArray[i]!;
                     index++;
@@ -148,7 +148,7 @@ namespace DSI
             // Object
             if (array is object[] objectArray)
             {
-                for (int i = 0; i < _count; i++)
+                for (int i = _count - 1; i >= 0; i--)
                 {
                     objectArray[index] = _internalArray[i]!;
                     index++;
