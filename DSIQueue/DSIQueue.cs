@@ -43,6 +43,16 @@ namespace DSI
             return value;
         }
 
+        public T Peek()
+        {
+            if (_first == null)
+            {
+                throw new Exception("Não é possivel usar o metodo Peek em uma Queue vazia.");
+            }
+
+            return _first.Value;
+        }
+
         public bool Empty()
         {
             return (_count == 0);
