@@ -3,3 +3,4 @@ Implementação das estruturas de dados apresentadas nas aulas de estruturas de 
 
 * DSIStack - Implementação da estrutura Pilha usando estruturas linkadas.  
 * DSIStackEx - Implementação da estrutura Pilha usando a estrutura array para melhor performance.
+* DSIQueue - Implementação da estrutura Fila usando encadeamento (objetos linkados).
